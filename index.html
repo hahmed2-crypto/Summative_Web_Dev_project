@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+    <title>Student Finance Tracker</title>
+    <link rel="stylesheet" href="styles/main.css">
+
+    <!--i will update the type module later.-->
+
+</head>
+<body>
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+    <header>
+        <h1>Student Finance Tracker </h1>
+        <nav aria-label="Main navigation">
+            <ul>
+                <li><a href="#dashboard">Dashboard</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#add">Add</a></li>
+                <li><a href="#settings">Settings</a></li>
+                <li><a href="#records">Records</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main id="main-content">
+        <section id="dashboard" aria-labelledby="dashboard-heading">
+            <h2 id="dashboard-heading">Dashboard</h2>
+
+            <div class="dashboard">
+                <div id="dashboard-placeholder" class="dashboard-placeholder"><p>Loading your dashboard......</p></div>
+                <div id="dashboard-content" class="dashboard-content">
+                    <div class="chart-container">
+                        <h3>7 day Activity</h3>
+                        <canvas id="weeklyChart" width="400" height="200" aria-label="7-day activity bar chart" role="img"></canvas>
+                    </div>
+
+                    <div class="metrics-grid">
+                        <div class="metric-card">
+                            <h3>Total Records</h3>
+                            <span id="metric-total-records" class="metric-value">0</span>
+                        </div>
+
+                        <div class="metric-card">
+                            <h3>Total Spent</h3>
+                            <span id="metric-total-spent" class="metric-value"></span>
+                        </div>
+
+                        <div class="metric-card">
+                            <h3>Top Categories</h3>
+                            <ul id="metric-top-categories" class="metric-list">
+                                <li>No data yet</li>
+                            </ul>
+                        </div>
+
+                        <div class="metric-card">
+                            <h3>Budget Status</h3>
+                            <p id="budget-status" class="metric-value" aria-live="polite">No budget set</p>
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+        </section>
+<!--This is my about section, description of my application-->
+        <section id="about" aria-labelledby="about-heading">
+            <h2 id="about-heading">About</h2>
+            <p>
+                Student Finance Tracker is a simple budget tracker that helps student track and monitor their daily budget,
+                in terms of spending, and understand where their money goes.
+            </p>
+
+            <p>
+                Track expenses, set a monthly spending cap, view quick statistics, and export their data when needed.
+            </p>
+
+            <p>
+                Built with accessibility and simplicity in mind.
+            </p>
+        </section>
+<!--Here is where i will be recording transactions, when they happen, amount, and give the user choose of category to select from()-->
+
+        <section id="add" aria-labelledby="add-heading">
+            <h2 id="add-heading">Add Transaction</h2>
+
+            <form id="transaction-form" novalidate>
+                <div class="form-group">
+                    <label for="description">Description</label> 
+                    <input type="text" id="description" name="description" required autocomplete="off" placeholder="e.g. Lunch at canteen">
+                    <span class="error" id="description-error" aria-live="polite"></span>
+
+                </div>
+
+                <div class="form-group">
+                    <label for="amount">Amount (RWF)</label>
+                    <input type="text" id="amount" name="amount" required inputmode="decimal" placeholder="e.g. 2500 or 25.50">
+                    <span class="error" id="amount-error" aria-live="polite"></span>
+                </div>
+
+                <div class="form-group">
+                    <label for="date">Date</label>
+                    <input type="text" id="date" name="date" required placeholder="YYYY-MM-DD" autocomplete="off">
+                    <span class="error" id="date-error" aria-live="polite"></span>
+                </div>
+
+                <div class="form-group">
+                    <label for="category">Category</label>
+                    <select id="category" name="category" required>
+                        <option value="">Select a category</option>
+                        <option value="Food">Food</option>
+                        <option value="Books">Books</option>
+                        <option value="Transport">Transport</option>
+                        <option value="Fees">Fees</option>
+                        <option value="Entertainment">Entertainment</option>
+                        <option value="Other">Other</option>
+                    </select>
+                    <span class="error" id="category-error" aria-live="polite"></span>
+                </div>
+
+                <button type="submit" class="btn btn-primary">Add Transaction</button>
+
+            </form>
+
+        </section>
+<!--Here is a my setting where currency & budget, base currency, and set my monthly budget cap in RWF-->
+        <section id="settings" aria-labelledby="settings-heading">
+            <h2 id="settings-heading">Settings</h2>
+
+            <form id="settings-form">
+                <fieldset>
+                    <legend>Currency Rates & Budget</legend>
+                    <div class="form-group">
+                        <label for="base-currency">Base Currency</label>
+                        <input type="text" id="base-currency" name="base-currency" value="RWF" readonly>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="rate-usd">USD to RWF</label>
+                        <input type="text" id="rate-usd" name="rate-usd" inputmode="decimal" placeholder="e.g. 1450">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="rate-nigerian-naira">Nigerian-Naira to RWF</label>
+                        <input type="text" id="rate-nigerian-naira" name="nigerian-naira" inputmode="decimal" placeholder="e.g. 1.11">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="rate-kenyan-shilling">Kenyan Shilling to RWF</label>
+                        <input type="text" id="rate-kenyan-shilling" name="kenyan-shilling" inputmode="decimal" placeholder="e.g. 11.36">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="budget-cap"> Monthly Budget Cap (RWF)</label>
+                        <input type="text" id="budget-cap" name="budget-cap" inputmode="decimal" placeholder="e.g. 5000000">
+                    </div>
+                </fieldset>
+
+                <fieldset>
+                    <legend>Categories</legend>
+                    <div class="form-group">
+                        <label for="new-category">Add New Category</label>
+                        <input type="text" id="new-category" name="new-category" placeholder="e.g. Hospital">
+                        <span class="error" id="new-category-error" aria-live="polite"></span>
+                    </div>
+                    <button type="button" id="add-category-btn" class="btn btn-secondary">Add Category</button>
+                </fieldset>
+
+                <div class="button-group">
+                    <button type="button" id="export-btn" class="btn btn-secondary">Export Data</button>
+                    
+                    <div class="form-group">
+                        <label for="import-file">Import Data</label>
+                        <input type="file" id="import-file" name="import-file" accept=".json,application/json">
+                    </div>
+                </div>
+            </form>
+        </section>
+
+<!--Here is a way to find a record info-->
+        <section id="records" aria-labelledby="records-heading">
+            <h2 id="records-heading">Records</h2>
+            <div class="records-controls">
+
+                <div class="form-group">
+                    <label for="search">Search</label>
+                    <input type="search" id="search" name="search" placeholder="search by describing">
+
+                    <span class="error" id="search-error" aria-live="polite"></span>
+                </div>
+
+                <div class="checkbox-group">
+                    <input type="checkbox" id="case-insensitive" name="case-insensitive">
+                    <label for="case-insensitive">Case-insensitive search </label>
+                </div>
+
+                <div class="form-group">
+                    <label for="sort-by"> Sort by</label>
+                    <select id="sort-by" name="sort-by">
+                        <option value="date-desc">Date (newest first)</option>
+                        <option value="date-asc">Date (oldest first)</option>
+                        <option value="amount-desc">Amount (high to low)</option>
+                        <option value="amount-asc">Amount (low to high)</option>
+                        <option value="description-asc">Description (A-Z)</option>
+                        <option value="description-desc">Description (Z-A)</option>
+
+                    </select>
+                </div>
+            </div>
+
+            <p id="records-status" role="status" aria-live="polite">Showing 0 records</p>
+
+            <div class="table-wrapper">
+                <table>
+                    <caption>List of all recorded transactions</caption>
+                    <thead>
+                        <tr>
+                            <th scope="col">Date</th>
+                            <th scope="col">Description</th>
+                            <th scope="col">Category</th>
+                            <th scope="col">Amount (RWF)</th>
+                            <th scope="col">Actions</th>
+                        </tr>
+                    </thead>
+
+
+                    <tbody id="records-body">
+                        <!-- Records will be inserted here -->
+                    </tbody>
+
+                </table>
+            </div>
+
+        </section>
+    </main>
+    <footer>
+        <p>
+            Student Finance Tracker &copy; 2026 . 
+            Contact: <a href="mailto:h.ahmed2@alustudent.com">h.ahmed2@alustudent.com</a> . 
+            <a href="https://github.com/hahmed2-crypto" target="_blank" rel="noopener">GitHub</a>
+        </p>
+    </footer>
+</body>
+</html>
