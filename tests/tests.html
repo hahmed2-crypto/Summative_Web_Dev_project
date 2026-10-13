@@ -16,7 +16,7 @@
     <div id="results"></div>
     <script type="module">
 
-        import {normalizeText, validateDescription} from "../../../scripts/validators.js";
+        import {normalizeText, validateDescription, validateAmount, validateDate, validateCategory, hasDuplicateWords} from "../../../scripts/validators.js";
 
         const result=document.getElementById("results");
         let passed = 0;
@@ -36,7 +36,7 @@
                 failed++;
             }
         }
-
+        // This is test are for validating Descriptions
         // test1: testing with space leading and trailing after a word  or description //
         assert("normalizeText collapses internal spaces",
             "Lunch at cafeteria",
@@ -82,11 +82,33 @@
             validateDescription("Lunch at cafeteria").valid
         )
 
+
+        //these wil be the test for amount regex
+        asset("standard decimal amounts pass", true, validateAmount("27.92").valid);
+        asset("letters or formatting symbols fail", false, validateAmount("7823 RWF").valid);
+
+        //Date field regex testing to match strict YYYY-MM-DD
+        assert("this is properly formatted date string passes", true, validateAmount("2021-12-24").valid);
+
+
+        //Here i am testing to confirm categories matching character/hyphen patterns
+        assert("The standard alphabetical singular categories passes", true, validatecategory("Health").valid);
+
+
+        //final check for duplicates which is my advance rule.
+        assert("Descriptions without duplicate tokens pass safely", false, hasDuplicateWords("Lunch at Cafeteria"));
+        assert("Descriptions with duplicate sequential tokens get flagged", true, hasDuplicateWords("Coffe with my brother"));
+
+
+
+
         //I need something that shows a summary of what is happening
         const summary = document.createElement("p");
         summary.className="summary";
         summary.textContent=`${passed} passed, ${failed} failed`;
         result.appendChild(summary);
+
+
     </script>
 
     
