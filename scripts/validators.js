@@ -60,7 +60,7 @@ export function validateAmount(value){
     const parsedAmount=parseFloat(value);
     if (parsedAmount <=0){
         return {
-            value: false,
+            valid: false,
             message: "Amount must be greater than 0"};
     }
 
@@ -99,7 +99,8 @@ export function validateDate(value){
             return {
                 valid: false,
                 message: "The input date does not exist on the calendar"
-            }
+            };
+        }
         return{
             valid:true,
             message: ""

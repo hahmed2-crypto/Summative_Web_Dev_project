@@ -40,7 +40,7 @@
         // test1: testing with space leading and trailing after a word  or description //
         assert("normalizeText collapses internal spaces",
             "Lunch at cafeteria",
-            normalizeText("Lunch at cafeteria")
+            normalizeText("Lunch  at  cafeteria")
         );
 
         //validating actual descriptions: these are for valid tests
@@ -79,25 +79,25 @@
         assert(
             "Internal double space is still valid",
             true,
-            validateDescription("Lunch at cafeteria").valid
+            validateDescription("Lunch  at  cafeteria").valid
         )
 
 
         //these wil be the test for amount regex
-        asset("standard decimal amounts pass", true, validateAmount("27.92").valid);
-        asset("letters or formatting symbols fail", false, validateAmount("7823 RWF").valid);
+        assert("the standard decimal amounts passes", true, validateAmount("27.91").valid);
+        assert("Letters or formatting symbols fail", false, validateAmount("2341 RWF").valid);
 
         //Date field regex testing to match strict YYYY-MM-DD
-        assert("this is properly formatted date string passes", true, validateAmount("2021-12-24").valid);
+        assert("this is properly formatted date string passes", true, validateDate("2021-12-24").valid);
 
 
         //Here i am testing to confirm categories matching character/hyphen patterns
-        assert("The standard alphabetical singular categories passes", true, validatecategory("Health").valid);
+        assert("The standard alphabetical singular categories passes", true, validateCategory("Health").valid);
 
 
         //final check for duplicates which is my advance rule.
         assert("Descriptions without duplicate tokens pass safely", false, hasDuplicateWords("Lunch at Cafeteria"));
-        assert("Descriptions with duplicate sequential tokens get flagged", true, hasDuplicateWords("Coffe with my brother"));
+        assert("Descriptions with duplicate sequential tokens get flagged", true, hasDuplicateWords("Coffe with my brother brother"));
 
 
 
