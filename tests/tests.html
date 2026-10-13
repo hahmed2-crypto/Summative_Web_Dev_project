@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Testing ground -> validators </title>
+    <style>
+        body{font-family: system-ui, sans-serif; padding: 1.5rem; line-height: 1.5;}
+        .pass{color:#1b7a3d}
+        .fail{color:#b00020; font-weight: 600;}
+        .summary{margin-top: 1.5rem; font-weight: 700;}
+        h1{margin-top:0;}
+    </style>
+</head>
+<body>
+    <h1>Validator Tests </h1>
+    <div id="results"></div>
+    <script type="module">
+
+        import {normalizeText, validateDescription} from "../scripts/validators.js";
+
+        const result=document.getElementById("results");
+        let passed = 0;
+        let failed= 0;
+
+        function assert(label, expected, actual){
+            const isPass=expected === actual;
+            const line = document.createElement("p");
+            line.className = isPass ? "pass" : "fail";
+            line.textContent = `${isPass ? "right" : "wrong"} ${label}
+            (expected: ${JSON.stringify(expected)}, got:${JSON.stringify(actual)})`;
+            result.appendChild(line);
+
+            if (isPass){ // we will need this to update the counters inside the function
+                pass++;
+            }else{
+                failed++;
+            }
+        }
+
+        // test1: testing with space leading and trailing after a word  or description //
+        assert("normalizeText collapses internal spaces","Lunch at cafetaria", normalizeText("Lunch at cafeteria"));
+
+        //validating actual descriptions: these are for valid tests
+
+        assert(
+            'Description "Lunch" is valid',
+            true,
+            validateDescription("Lunch").valid
+        );
+
+        assert(
+            "Leading space is invalid",
+            false,
+            validateDescription(" Lunch").valid
+        );
+
+
+        assert(
+            "Trailing space is invalid",
+            false,
+            validateDescription("Lunch ").valid
+        );
+
+        assert(
+            "When user do not type anything(empty) is also invalid",
+            false,
+            validateDescription("").valid
+        );
+
+        assert(
+            "Space-only is invalid",
+            false,
+            validateDescription("  ").valid
+        );
+
+        assert(
+            "Internal double space is still valid",
+            true,
+            validateDescription("Lunch at cafeteria").valid
+        )
+
+        //I need something that shows a summary of what is happening
+        const summary = document.createElement("p");
+        summary.className="summary";
+        summary.textContent=`${passed} passed, ${failed} failed`;
+        result.appendChild(summary);
+    </script>
+
+    
+</body>
+
+</html>
