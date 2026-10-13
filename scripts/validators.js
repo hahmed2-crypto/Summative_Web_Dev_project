@@ -1,4 +1,4 @@
-/** I am going to remove the trailing or leading space because that is not productive and it will collapse multiple space inot one signle space.*/
+//t will collapse multiple spaces inot one space.
 export function normalizeText(value){
     if (typeof value !=="string") return "";
     return value.replace(/\s+/g, " ");
@@ -6,7 +6,6 @@ export function normalizeText(value){
 
 /**I think i need to normalize trailing or leading spaces after i normalized so that we can reject the empty string as well after normalization.*/
 export function validateDescription(value){
-    const normalized= normalizeText(value);
 
     if(typeof value !=="string"){ /**ALways going to check as for safety*/
         return{

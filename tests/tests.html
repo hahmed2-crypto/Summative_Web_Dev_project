@@ -16,7 +16,7 @@
     <div id="results"></div>
     <script type="module">
 
-        import {normalizeText, validateDescription} from "../scripts/validators.js";
+        import {normalizeText, validateDescription} from "../../../scripts/validators.js";
 
         const result=document.getElementById("results");
         let passed = 0;
@@ -31,14 +31,17 @@
             result.appendChild(line);
 
             if (isPass){ // we will need this to update the counters inside the function
-                pass++;
+                passed++;
             }else{
                 failed++;
             }
         }
 
         // test1: testing with space leading and trailing after a word  or description //
-        assert("normalizeText collapses internal spaces","Lunch at cafetaria", normalizeText("Lunch at cafeteria"));
+        assert("normalizeText collapses internal spaces",
+            "Lunch at cafeteria",
+            normalizeText("Lunch at cafeteria")
+        );
 
         //validating actual descriptions: these are for valid tests
 
