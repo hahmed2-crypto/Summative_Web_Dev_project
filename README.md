@@ -24,7 +24,7 @@ This is a website that is for students who want manage their finance resposibly.
 |Date | `"^\d{4}-(0[1-9]|1[0-2])-(0[1-9]|[12]\d|3[01])$"` | YYYY-MM-DD shape(plus UTC real calender check in code) | 2024-02-29 | 2026-02-30 |  I wrote the regex so it gets rid-off any other numbers that are not in this year form type so that we can check with real UTC calender  |
 |Amount | `^([1-9]\d*)(\.\d{1,2})?$` | Digits, no leading zeros, up to 2 decimals | `12.50 | `012`, `12.345` | this regex pattern makes sure that numbers are real numbers, and not containing any zeros infront |
 |Category | `^[A-Za-z]+(?:[ -][A-Za-z]+)*$` | letters, single spaces, hyphens | `Health-Care` | `Food2` | for category, i believe i only need for the categories to contain letters, hyphens, and a single space, wich this regex allows me to do so  |
-|Duplicate words | `\b(\w+)\s+\1\b` (it is for case-insensitive) | repeated word(back-reference) |this regex makes sure that in all of the code that there is no repeating same work |
+|Duplicate words | `\b(\w+)\s+\1\b` (it is for case-insensitive) | repeated word(back-reference)| | |this regex makes sure that in all of the code that there is no repeating same work |
 # Justifications for Tested Items:
 - Tab key: It works and makes to move to defferent sections and forms, also scrolls up or moves upward as well.
 - space key: also works and it jumps down by sections as well
