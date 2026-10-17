@@ -1,11 +1,11 @@
 # Student Finance Tracker 
 # Links
 1. Live URL: https://hahmed2-crypto.github.io/Summative_Web_Dev_project/
-2. ---Video--- (to be recorded soon)
+2. Video Link:  (to be recorded soon)
 
 
 ## Overview
-This is a website that is for students who want manage their finance resposibly. It allows them to monitor, add thier spending. it allows them to see their weekly spending. IT allows them also budget for monthly budgiting. 
+This is a website that is for students who want manage their finance resposibly. It allows them to monitor, add see thier spending on the dashboard. it allows them to see their weekly spending. IT allows them also budget for monthly budgiting.(I am still working on the Dashboard and what it shows) 
 ## Features
 
 - Transaction add button - allows the user to add their spending item(description), with date,money and what type of category it is.(Inprogress)
@@ -18,21 +18,21 @@ This is a website that is for students who want manage their finance resposibly.
 
 
 # Regex Catalog:
-| **Field** **Pattern** **Checks** **Passes** **Fails** **Why I chose this**
+| **Field** | **Pattern** | **Checks** | **Passes** | **Fails** | **Why I chose this**|
 |---|---|---|---|---|---|
-|Description | ^\S(?:.*\)?$ | No leading or trailing space | `Lunch` | `Lunch` |  |
-|Date | `^\d{4}-(0[1-9]|1[0-2])-(0[1-9]|[12]\d|3[01])$` | YYYY-MM-DD shape(plus UTC real calender check in code) | 2021-02-29 | 2026-02-30 |   |
-|Amount | `^(0|[1-9]\d*)(\.\d{1,2})?$` | Digits, no leading zeros, up to 2 decimals | `12.50 012`, `12.345` |  |
+|Description | ^\S(?:.*\)?$ | No leading or trailing space | `Lunch` | `" Lunch"` |  |
+|Date | `^\d{4}-(0[1-9]|1[0-2])-(0[1-9]|[12]\d|3[01])$` | YYYY-MM-DD shape(plus UTC real calender check in code) | 2024-02-29 | 2026-02-30 |    |
+|Amount | `^(0|[1-9]\d*)(\.\d{1,2})?$` | Digits, no leading zeros, up to 2 decimals | `12.50 | `012`, `12.345` |  |
 |Category | `^[A-Za-z]+(?:[ -][A-Za-z]+)*$` | letters, single spaces, hyphens | `Health-Care` | `Food2` |  |
 |Duplicate words | `\b(\w+)\s+\1\b` (it is for case-insensitive) | repeated word(back-reference) | |
 # Justifications for Tested Items:
-- Skip link:
-- tab order: 
-- focus rings: 
+-Keyboard pass: I tested the up and down arrows on the keyboard so that it scrolls up and down, and it does work, it scrolls up and down.
 - form submit: I allowed the user to record or store their data in this submit form. Then, i turned it into the table so that they can see through their for easier access. 
 
 # Accesssibility notes: 
-
+What I built so far:
+Responsive App with Dashboard placholder, About me seciton, Add section for adding transactions, settings transaction manual conversations, 
+category which allows the user to add a category, export and import data sections that are not fully functional right now, Records section where it has search input form that allows the user to search with case-insensitivity in mine, also there is sort by function, which the user can chose to origanize the data how they would like to sort their data, and finally i built the list of all recorded transactions that the user can see in the app. 
 
 
 # How to run the app and tests: 
