@@ -40,9 +40,9 @@ Another example of import limitions is when i changed amount to -600, the file k
 |Category | `^[A-Za-z]+(?:[ -][A-Za-z]+)*$` | letters, single spaces, hyphens | `Health-Care` | `Food2` | for category, i believe i only need for the categories to contain letters, hyphens, and a single space, wich this regex allows me to do so  |
 |Duplicate words | `\b(\w+)\s+\1\b` (it is for case-insensitive) | repeated word(back-reference)|Tea tea | is island |this regex flags a repeated word in a description |
 
-## Justifications for Tested Items:
+## Tested Items:
 
-- **Skip link:** After loading the page, and I pressed Tab once, It showed blue skip-link pops up and Enter moves focus to main content section so that we can move to the navigations. Skip-link does not stay stay on the screen after the first loading.
+- **Skip link:** If you use shift + tab it will take you up to skip link and when you tab enter from there, it will take you to dashboard.
 - **Tab key:** Tab moves focus from one control to the next. It jumps down to Add Transaction section
 - **space key:** space scrolls through the page only when nothing is focused on.
 - **Enter Key:** I tabbed to settings section and pressed Enter. No thing happened
