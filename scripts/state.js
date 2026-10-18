@@ -14,9 +14,11 @@ export const state={
 };
 //creating a unique and sequential record string IDS safely, and protects agains duplicate IDs even after records are deleted.
 export function generateUniqueID(){
-    if (state.records.length === 0) return "rec_0001";
+    if (!state.records || state.records.length === 0) return "rec_0001";
     const numericalIds= state.records.map(rec=> {
-        const match= rec.id ? match(/\d+/) : null;
+        if(!rec || !rec.id || typeof rec.id !== "string") return 0; // this allows the files for records to safe check wither there are ID or record is missing, and skip it safely without crashing
+
+        const match= rec.id.match(/\d+/);
         return match ? parseInt(match[0], 10) : 0;
     });
 

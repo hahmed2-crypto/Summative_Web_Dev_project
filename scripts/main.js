@@ -254,12 +254,34 @@ document.addEventListener("DOMContentLoaded", () =>{
                     isDuplicate= true;
                     break;
                 }
-            };
-        })
+            }
+
+            if(isDuplicate){
+                if(newCategoryError) newCategoryErrorError.textContent = "This category already exists.";
+                newCategoryInput.classList.add("input-error");
+                return;
+            }
+
+            const updatedCategoryCollection= [...state.settings.categories, cleanCategoryName];
+            updateSettings({categories: updatedCategoryCollection});
+            newCategoryInput.value= "";
+            alert(`Category "${cleanCategoryName}" added successfully`);
+        });
     
             
         
     }
+    // Here I will implement deletion so that the user can easily erise some of the files
+    document.body.addEventListener("click", function(e){
+        if(e.target && e.target.classList.contains("btn-delete")){
+            const targetId= e.target.dataset.id;
+            if(confirm("are you sure you want to delete this record permanently?")){
+                deleteRecord(targetId); // when confirmed it will delete
+            }
+        }
+    })
+
+
     // a program that will allow all the seeding files
     if(importFileInput){
         importFileInput.addEventListener("change", function(e){
@@ -271,10 +293,23 @@ document.addEventListener("DOMContentLoaded", () =>{
                 try{
                     const parsedPackage= JSON.parse(event.target.result);
                     if(parsedPackage){
+
+                        // for seed files; if it is a direct array list of seed records
                         if(Array.isArray(parsedPackage)){
+                            for ( let i = 0; i < parsedPackage.length; i++){ // i will allow the injected seed to automatically assign ID if the seed file element don't have them.
+                                if(!parsedPackage[i].id){
+                                    parsedPackage[i].id= "rec_"+String(i+1).padStart(4, '0');
+                                }
+                            }
                             setRecords(parsedPackage);
+                            //otherwise, if it's an object package structure wrapper
                         }else{
                             if(parsedPackage.records && Array.isArray(parsedPackage.records)){
+                                for (let i = 0; i< parsedPackage.records.length; i++){
+                                    if(!parsedPackage.records[i].id){
+                                        parsedPackage.records[i].id= "rec_"+ String(i+1).padStart(4, '0');
+                                    }
+                                }
                                 setRecords(parsedPackage.records);
                             } 
                             if(parsedPackage.settings){
