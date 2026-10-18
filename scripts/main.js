@@ -271,6 +271,35 @@ document.addEventListener("DOMContentLoaded", () =>{
             
         
     }
+
+    //Here i will implement the download option for the students
+
+    if(exportBtn){
+        exportBtn.addEventListener("click", function(){
+            //look through the active transactions array and system settings object together
+            const systemBackUpPackage ={
+                records: state.records,
+                settings: state.settings
+            };
+
+            // changing or converting dataset into formatted readable string
+            const jsonTextString = JSON.stringify(systemBackUpPackage, null, 2);
+
+            // I will create a secure web data URI format string package
+            const fileContentString ="data:text/json;charset=utf-8," + encodeURIComponent(jsonTextString);
+
+            // html element anchor
+            const downloadAnchor = document.createElement('a');
+            downloadAnchor.setAttribute("href", fileContentString);
+            downloadAnchor.setAttribute("download", "finance_backup.json");
+
+
+            document.body.appendChild(downloadAnchor);
+            downloadAnchor.click();
+            downloadAnchor.remove();
+        });
+    }
+
     // Here I will implement deletion so that the user can easily erise some of the files
     document.body.addEventListener("click", function(e){
         if(e.target && e.target.classList.contains("btn-delete")){

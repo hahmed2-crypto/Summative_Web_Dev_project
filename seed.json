@@ -38,7 +38,7 @@
   {
     "id": "rec_0005",
     "description": "Tea tea break at the library",
-    "amount": 800,
+    "amount": -800,
     "category": "Food",
     "date": "2026-10-06",
     "createdAt": "2026-10-06T16:05:00.000Z",
@@ -47,7 +47,7 @@
   {
     "id": "rec_0006",
     "description": "Leap day pizza",
-    "amount": 6000,
+    "amount": -6000,
     "category": "Food",
     "date": "2024-02-29",
     "createdAt": "2024-02-29T19:20:00.000Z",
