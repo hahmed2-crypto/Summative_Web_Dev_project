@@ -66,7 +66,7 @@ Another example of import limitions is when i changed amount to -600, the file k
 - **Headings:** My page flows from one main `<h1>` title down into standard`<h2>` sub-sections.
 - **Labels:** Every single text input field and selection dropdown box is connected directly to a `<label>` tag using matching `id` and `for` attributes.
 - **Focus Outlines:** Visible focus rings are fully active so keyboard-onlly users can clearly see what box is currently highlighted.
-- **Screen Reader Alerts:** Error text logs are attached to their input boxes via `aria-describedby`. Live dashboard metrics changes use `aria-live` fields so screen readers read budget warnings out loud automatically
+- **Screen Reader Alerts:**  Live dashboard metrics changes use `aria-live` fields so screen readers read budget warnings out loud automatically
 
 
 ## How to run the app and tests:
