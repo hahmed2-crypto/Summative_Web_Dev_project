@@ -76,7 +76,7 @@ Another example of import limitions is when i changed amount to -600, the file k
 
 ## AI Disclosure, 
 In line with the previous assignment brief/description, which allowed me to use some for documantation and seed data, i used Claudi AI and that is why my percent is a little higher for first part of my project on codePause. I just want the teacher to know that this is was before the assignment was updated. 
-files containing AI: Seed data, .gitmore README.md Skeleton. which in the the previous assignment it said, we were allowed to use AI for that and that is why the CodePause is showing a lot of AI for that day that has above 80(on the day files were add 88% AI because at the time i was allowed, but my overall or avarage is 16% AI usage across the week) . I was not sure if i removed the files, it will change anything so i kept it. 
+files containing AI: Seed data, .gitmore README.md Skeleton. which in the the previous assignment it said, we were allowed to use AI for that and that is why the CodePause is showing a lot of AI for that day that has above 80(on the day files were add 88% AI because at the time i was allowed, but my overall or avarage is 16% AI usage across the week) . I was not sure if i need removed the files since the the AI percentage won't change, so i kept it. 
 
 
 
