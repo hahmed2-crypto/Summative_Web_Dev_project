@@ -22,6 +22,12 @@ Import Data- It allows the user to upload json files only
 category which allows the user to add a category, export and import data sections that are not fully functional right now, Records section where it has search input form that allows the user to search with case-insensitivity in mine, also there is sort by function, which the user can chose to origanize the data how they would like to sort their data, and finally i built the list of all recorded transactions that the user can see in the app.
 - Easy Row Deletation: Every transaction row has a delete button so that user can erase that row if they not like it or want edit it in the add transation area. 
 
+## Data Handling
+Records are saved to localStorage on every change
+They will still be there after a reload. Export downloads all records as JSON file. Also, import only imports JSON file. Import does not create duplications, if two JSON files contain same data, it will only keep one. One of the test, when I removed one id from same JSON file, and try to import it, it gets rejected and shows message asking for a Valid JSON. The page keeps working.
+
+** Known limitation:** Import does not recheck values
+
 
 ## Regex Catalog:
 
