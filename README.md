@@ -14,7 +14,7 @@ This is a website that I made for for students who want manage daily their money
 - Currency Conversion - it allows the user to manually convert the amount which has base transfer currency of RWF to either naira, usd or kenyan shilling.
 - Categories - this feature is a feaure that allows the user to add new category if they feel like they need new category.
 - Export: Let's the user download their records
-Import Data- It allows the user to upload json files only
+- Import Data- It allows the user to upload json files only
 - Records - records comes with search button that allows the user to search through their data and another select area where they can sort the data by date from oldest to newest, amount from high to low, and description with A-Z(Inprogress).
 
 - Record Table Feature - It is a table that allows the user to see the recorded data which will be deplayed as Date, Description, Category, Amount(RWF) Actions
