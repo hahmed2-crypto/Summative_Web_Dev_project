@@ -9,9 +9,17 @@ export function compileRegex(input, flags= 'i'){
     }
 }
 
-// I will wrap matching text strings inside a standard <makr> tag for live highlighting
+// I will wrap matching text strings inside a standard <mark> tag for live highlighting
 
 export function highlightText(text, regex){
     if (!regex || typeof text !== 'string') return text;
-    return text.replace(regex, (match) => `<mark>${match}</mark>`);
+    return text.replace(regex, (match) => {
+        const securedMatch = match
+            .replace(/&/g, "&amp;")
+            .replace(/</g, "&lt;")
+            .replace(/>/g, "&gt;")
+            .replace(/"/g, "&quot;")
+            .replace(/'/g, "&#39;");
+        return `<mark>${securedMatch}</mark>`;
+    });
 }

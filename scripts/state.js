@@ -16,8 +16,8 @@ export const state={
 export function generateUniqueID(){
     if (state.records.length === 0) return "rec_0001";
     const numericalIds= state.records.map(rec=> {
-        const match=rec.id.match(/\d+/);
-        return match ? parseInt(match[0], 10): 0;
+        const match= rec.id ? match(/\d+/) : null;
+        return match ? parseInt(match[0], 10) : 0;
     });
 
     const highestId = Math.max(...numericalIds, 0);
@@ -33,7 +33,8 @@ export function addRecord(description, amount, category, date){
         id: generateUniqueID(),
         description,
         amount: parseFloat(amount),
-        category, date,
+        category, 
+        date,
         createdAt: nowIso,
         updatedAt: nowIso
     };
@@ -57,7 +58,7 @@ export function editRecord(id, updatedFields){
         }
         return rec;
     });
-    setRecords(updated)
+    setRecords(updated);
 }
 
 // function that connects ui.js to state changes
@@ -79,5 +80,5 @@ export function setRecords(newRecords){
 export function updateSettings(newSettings){
     state.settings = {...state.settings, ...newSettings};
     saveSettings(state.settings);
-    listeners.forEach(callback => callback())
+    listeners.forEach(callback => callback());
 }

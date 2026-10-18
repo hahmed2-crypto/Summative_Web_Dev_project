@@ -1,15 +1,14 @@
 const STORAGE_KEY = 'finance_tracker_records';
 const SETTINGS_KEY = 'finance_tracker_settings';
 
+//Defualt settings
 const DEFAULT_SETTINGS={
     budgetCap: 0,
-    rateUSD: 1450,
+    rateUsd: 1450,
     rateNaira: 1.11,
     rateShilling: 11.36,
-    categories: ["food", "Books", "Transport", "Fees", "Entertainment", "Other"]
+    categories: ["Food", "Books", "Transport", "Fees", "Entertainment", "Other"]
 };
-
-
 
 //this will load data from localStorage 
 export function loadRecords(){
@@ -34,13 +33,24 @@ export function saveRecords(records){
 // if it does not exit, we gonna load to defualt values
 export function loadSettings(){
     try{
-        const data= localStorage.getItem(SETTING_KEY);
-        if(!data){
+        const data= localStorage.getItem(SETTINGS_KEY);
+        if (!data){
             return DEFAULT_SETTINGS;
         }
-        return JSON.parse(data);
+
+
+        //merge save option over defaults safely
+        const parsed= JSON.parse(data);
+        return Object.assign({}, DEFAULT_SETTINGS, parsed);
+
     }catch(e){
-        return DEFAULT_SETTINGS;
+        return {
+            budgetCap: 0,
+            rateUsd: 1450,
+            rateNaira: 1.11,
+            rateShilling: 11.36,
+            categories: ["Food", "Books", "Transport", "Fees", "Entertainment", "Other"]
+        };
     }
 }
 
@@ -49,7 +59,7 @@ export function loadSettings(){
 
 export function saveSettings(settings){
     try{
-        localStorage.setItems(SETTINGS_KEY, JSON.stringify(settings));
+        localStorage.setItem(SETTINGS_KEY, JSON.stringify(settings));
     }catch(e){
         console.error("Error saving settings data to localStorage:", e);
     }

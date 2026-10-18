@@ -10,7 +10,7 @@ export function validateDescription(value){
     if(typeof value !=="string"){ /**ALways going to check as for safety*/
         return{
             valid:false,
-            message:"Descriiption must be string"
+            message:"Description must be string"
         };
     }
 
@@ -26,8 +26,8 @@ export function validateDescription(value){
 
         return{
             valid: false,
-            message:"Description cannot have laeding or trailing spaces."
-        };
+            message:"Description cannot have leading or trailing spaces."
+        }
     }
 
     // Otherwise, it passed our patterns and should be returned.
@@ -53,21 +53,18 @@ export function validateAmount(value){
 
     if (!amountPattern.test(value)){
         return{
-            valid: false,
-            message: "Amount must be greater than 0"};
-    }
-
-    const parsedAmount=parseFloat(value);
-    if (parsedAmount <=0){
-        return {
-            valid: false,
-            message: "Amount must be greater than 0"};
+            valid:false,
+            message: "Amount must be digits only, no leading zeros, and at most two decimal places (e.g. 2350, 32.14)."
+        
+        };
     }
 
     return{
-        valid:true,
+        valid: true,
         message: ""
+
     };
+
 }
 
 // here i will be writing my codes for validating Date
@@ -93,18 +90,24 @@ export function validateDate(value){
                 valid: false,
                 message: "Date must be in YYYY-MM-DD format"};
             }
-        // we will check if the valid dat in the string format is in the actual calend with this validation
-        const dateObject= new Date(value);
-        if(isNaN(dateObject.getTime())){
-            return {
+        // we will check if the valid dat in the string format is in the actual calend with this validation(I'm using UTC)
+        const parts = value.split("-");
+        const y= parseInt(parts[0], 10);
+        const m= parseInt(parts[1], 10) -1;
+        const d =parseInt(parts[2], 10);
+
+        const utcDate= new Date(Date.UTC(y, m, d));
+        if (utcDate.getUTCFullYear() !== y || utcDate.getUTCMonth() !==m || utcDate.getUTCDate() !== d){
+            return{
                 valid: false,
                 message: "The input date does not exist on the calendar"
             };
         }
-        return{
+
+        return {
             valid:true,
             message: ""
-    };
+        };
 }
 
 //here i will be making sure that to validate selected or added categories allows letters, internal single spaces, and internal hyphens.
@@ -113,7 +116,7 @@ export function validateCategory(value){
     if(typeof value !=="string"){
         return{
             valid: false,
-            message: "Category must a string input"
+            message: "Category must  be a string input"
         };
     }
 
