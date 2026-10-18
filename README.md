@@ -1,7 +1,7 @@
 # Student Finance Tracker 
 ## Links
 1. Live URL: https://hahmed2-crypto.github.io/Summative_Web_Dev_project/
-2. Video Walkthrough: https://youtu.be/IV1HIWjms58 
+2. Video Walkthrough: https://youtu.be/IV1HlWjms58 
 
 
 ## Overview
