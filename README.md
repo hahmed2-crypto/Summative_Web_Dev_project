@@ -6,13 +6,13 @@
 
 ## Overview
 
-This is a website that I made for for students who want manage daily their money resposibly. It allows them see their spending, total metric on live dashboard, set budget cap in Rwandan France, and manage everything in one clean page.
+This is a website that I made for for students who want manage daily their money resposibly. It allows them see their spending, total metric on live dashboard, set budget cap in Rwandan Franc, and manage everything in one clean page.
 
 ## Features
 
-- ** Add Transaction - allows the user to add their spending item(description), with date,money and what type of category it is.(Inprogress)
-- Currency Conversion - it allows the user to manually convert the amount which has base transfer currency of RWF to either naira, usd or kenyan shilling.(Inprogress)
-- Categories - this feature is a feaure that allows the user to add new category if they feel like they need new category(Inprogress)
+- ** Add Transaction - allows the user to add their spending item(description), with date,money and what type of category it is.
+- Currency Conversion - it allows the user to manually convert the amount which has base transfer currency of RWF to either naira, usd or kenyan shilling.
+- Categories - this feature is a feaure that allows the user to add new category if they feel like they need new category.
 - Export: Let's the user download their records
 Import Data- It allows the user to upload json files only
 - Records - records comes with search button that allows the user to search through their data and another select area where they can sort the data by date from oldest to newest, amount from high to low, and description with A-Z(Inprogress).
@@ -25,8 +25,9 @@ category which allows the user to add a category, export and import data section
 ## Data Handling
 Records are saved to localStorage on every change
 They will still be there after a reload. Export downloads all records as JSON file. Also, import only imports JSON file. Import does not create duplications, if two JSON files contain same data, it will only keep one. One of the test, when I removed one id from same JSON file, and try to import it, it gets rejected and shows message asking for a Valid JSON. The page keeps working.
+Another example of import limitions is when i changed amount to -600, the file kept it and imported to the data
 
-** Known limitation:** Import does not recheck values
+**Known limitation:** Import does not recheck values
 
 
 ## Regex Catalog:
@@ -46,7 +47,7 @@ They will still be there after a reload. Export downloads all records as JSON fi
 - **space key:** space scrolls through the page only when nothing is focused on.
 - **Enter Key:** I tabbed to settings section and pressed Enter. No thing happened
 - **Tab + shift key:** I tabbed forward to the about section and pressed Shift+Tab. And the focus moved back up to previous sections which is dashboard.
-- **form submition:** when click on submit `e.preventDefualt()` to stop the page reload. if rule fails, it stops, paints the error message label, and forces the user focus onto the first broken box.
+- **form submition:** when click on submit, submitting stops the page from reloading, shows the error message under each bad field, and moves focus to the first bad one.
 
 
 ## Keyboard Map
@@ -54,7 +55,7 @@ They will still be there after a reload. Export downloads all records as JSON fi
 |---|---|---|
 | **Tab** | Move focus to the next control (skip link first after reload) | **Yes** |
 |**Shift+Tab** | Move focus to the previous control | **Yes** |
-| **Enter** | Activate the focused link or button| **Yes** |
+| **Enter** | Activate the focused link or button| **No** |
 | **Space** | Press a focused button; scroll when nothing is focused on| **Yes** |
 
 
